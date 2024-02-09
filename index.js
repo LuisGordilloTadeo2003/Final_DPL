@@ -30,6 +30,9 @@ app.get('/api/:date?', (req, res) => {
   // If date parameter is empty, use current time
   if (!dateInput) {
     dateInput = new Date();
+  } else if (!isNaN(dateInput)) {
+    // If input is a Unix timestamp, convert it to milliseconds
+    dateInput = parseInt(dateInput);
   }
 
   let dateObject = new Date(dateInput);
