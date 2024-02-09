@@ -48,20 +48,6 @@ app.get('/api/:date?', (req, res) => {
   });
 });
 
-app.use(requestIp.mw());
-
-app.get('/api/whoami', (req, res) => {
-  const ipAddress = req.clientIp;
-  const language = req.headers['accept-language'];
-  const software = req.headers['user-agent'];
-
-  res.json({
-    ipaddress: ipAddress,
-    language: language,
-    software: software
-  });
-});
-
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
