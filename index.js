@@ -48,10 +48,10 @@ app.get('/api/:date?', (req, res) => {
   });
 });
 
-app.enable('trust proxy'); // to get correct client IP behind proxy
+app.use(requestIp.mw());
 
 app.get('/api/whoami', (req, res) => {
-  const ipAddress = req.ip.replace(/^.*:/, ''); // Extract IPv4 address
+  const ipAddress = req.clientIp;
   const language = req.headers['accept-language'];
   const software = req.headers['user-agent'];
 
